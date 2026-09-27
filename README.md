@@ -113,18 +113,11 @@ Foi analisada a distribuição das notas atribuídas pelos clientes.
 
 As avaliações apresentam concentração nas notas mais altas, com 77,07% das avaliações com nota disponível apresentando pontuação 4 ou 5.
 
-## 8. Arquitetura do pipeline
 
-O fluxo desenvolvido pode ser resumido como:
-
-**Arquivos CSV → Unity Catalog Volume → Bronze → Silver → Gold → Análises**
-
-A arquitetura permite separar a ingestão, o tratamento, a modelagem e o consumo analítico dos dados.
-
-## 9. Autoavaliação
+## 8. Autoavaliação
 
 O projeto permitiu aplicar conceitos de ingestão, armazenamento em nuvem, arquitetura Medallion, transformação, modelagem, qualidade e análise de dados utilizando Databricks e SQL.
 
 Um dos principais aprendizados foi a importância de compreender a granularidade e a cardinalidade das tabelas antes de realizar os relacionamentos, especialmente entre pedidos, itens e pagamentos.
 
-Como evolução futura, o pipeline poderia incorporar novas fontes de dados, maior automação e novas análises a partir da camada Gold.
+Para aprofundar a análise, o pipeline poderia ter novas fontes de dados, maior automação e novas análises a partir da camada Gold.
