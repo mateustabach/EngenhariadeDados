@@ -151,10 +151,42 @@ Somadas, as notas **4 e 5 representam 77,07% das avaliações com nota disponív
 
 A análise permite observar a distribuição geral da satisfação registrada na base, sem buscar estabelecer relações causais entre as avaliações e outras características dos pedidos ou clientes.
 
+### 7.5 Síntese dos resultados
+
+As análises realizadas permitiram responder às quatro perguntas de negócio definidas no início do projeto.
+
+A análise temporal mostrou crescimento do volume de pedidos e do valor movimentado ao longo do período disponível, com manutenção de um ticket médio próximo de R$ 137 nos períodos de maior movimentação.
+
+A análise por categoria mostrou que volume e valor financeiro não são necessariamente proporcionais. `cama_mesa_banho` apresentou o maior volume de itens vendidos, enquanto `beleza_saude` apresentou o maior valor total de vendas. A análise do valor médio por item também evidenciou diferenças relevantes entre as categorias.
+
+Na dimensão de clientes, a utilização do `customer_unique_id` permitiu identificar que apenas 3,12% dos clientes realizaram mais de uma compra. Apesar da menor participação em quantidade, esse grupo apresentou valor médio de compras de R$ 307,66, aproximadamente 1,9 vez o valor médio observado entre os clientes de compra única.
+
+Por fim, a análise das avaliações mostrou concentração nas notas mais altas, com 77,07% das avaliações com nota disponível apresentando pontuação 4 ou 5.
+
+Em conjunto, os resultados demonstram que o pipeline desenvolvido foi capaz de transformar os dados brutos em informações estruturadas para responder às perguntas de negócio propostas, explorando diferentes dimensões da operação de e-commerce: evolução temporal, produtos, clientes e percepção dos consumidores.
+
 ## 8. Autoavaliação
 
-O projeto permitiu aplicar conceitos de ingestão, armazenamento em nuvem, arquitetura Medallion, transformação, modelagem, qualidade e análise de dados utilizando Databricks e SQL.
+O objetivo inicial do projeto era construir um pipeline de dados em ambiente de nuvem, utilizando o Databricks, capaz de transformar os dados públicos de e-commerce da Olist em estruturas organizadas para análise e responder a perguntas de negócio relacionadas a vendas, produtos, clientes e avaliações.
 
-Um dos principais aprendizados foi a importância de compreender a granularidade e a cardinalidade das tabelas antes de realizar os relacionamentos, especialmente entre pedidos, itens e pagamentos.
+Considero que o objetivo foi atingido. O projeto percorreu as principais etapas propostas, desde a disponibilização dos arquivos no ambiente de nuvem e sua ingestão na camada Bronze, passando pelo tratamento e validação na camada Silver, até a construção de estruturas analíticas na camada Gold. A partir dessas estruturas, foi possível realizar análises que responderam às quatro perguntas de negócio definidas inicialmente.
 
-Para aprofundar a análise, o pipeline poderia ter novas fontes de dados, maior automação e novas análises a partir da camada Gold.
+### Principais dificuldades
+
+Uma das principais dificuldades encontradas foi compreender a granularidade e a cardinalidade das tabelas antes de realizar os relacionamentos. As relações de um para muitos entre pedidos, itens e pagamentos poderiam gerar duplicação de registros e distorção dos indicadores caso fossem realizadas junções diretamente entre as tabelas. Esse problema levou à necessidade de realizar agregações prévias na construção das tabelas Gold.
+
+Outra dificuldade foi compreender a diferença entre `customer_id` e `customer_unique_id`. Enquanto `customer_id` está associado ao registro do cliente em um pedido, `customer_unique_id` permite identificar o mesmo consumidor ao longo de diferentes pedidos. A compreensão dessa diferença foi fundamental para realizar corretamente a análise de recorrência.
+
+Também foram encontrados problemas de qualidade e interpretação durante a ingestão dos dados, incluindo valores nulos, diferenças de completude entre as tabelas e a necessidade de tratamento específico da tabela de avaliações. Esses problemas reforçaram a importância de validar os dados antes de utilizá-los nas análises.
+
+Por fim, houve uma curva de aprendizado relacionada à utilização do Databricks, à organização das camadas Bronze, Silver e Gold e à utilização de SQL para realizar as transformações e análises no ambiente de nuvem.
+
+### Trabalhos futuros
+
+Como evolução do projeto, seria possível ampliar o pipeline com novas fontes de dados e automatizar a execução das etapas de ingestão, transformação e validação.
+
+Também seria possível aprofundar as análises realizadas, incluindo indicadores de logística e prazo de entrega, análise geográfica de clientes e vendedores, comportamento de pagamento e relacionamento entre avaliações e características dos pedidos.
+
+Outra evolução seria a criação de dashboards a partir das tabelas Gold, permitindo acompanhar os principais indicadores de forma visual e facilitar a utilização dos resultados por usuários de negócio.
+
+Para fins de portfólio, uma evolução futura seria transformar o MVP em um pipeline mais próximo de um ambiente produtivo, incorporando maior automação, monitoramento da qualidade dos dados, versionamento estruturado e documentação da execução do pipeline.
