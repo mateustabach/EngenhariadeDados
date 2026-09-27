@@ -85,34 +85,71 @@ Foram identificados alguns valores nulos em atributos específicos, como categor
 
 ## 7. Análise dos dados
 
-As análises realizadas foram direcionadas pelas perguntas de negócio definidas inicialmente.
+As análises foram realizadas a partir das estruturas construídas na camada Gold e direcionadas pelas perguntas de negócio definidas inicialmente.
+
+A base analisada possui 99.441 pedidos, 112.650 itens vendidos, 32.951 produtos e 96.096 clientes únicos, permitindo explorar diferentes dimensões do negócio, como evolução das vendas, categorias de produtos, recorrência de clientes e avaliações.
 
 ### 7.1 Evolução das vendas
 
-Foi analisada a evolução da quantidade de pedidos, do valor das vendas e do ticket médio ao longo do período disponível na base.
+Foi analisada a evolução da quantidade de pedidos, do valor dos produtos vendidos e do ticket médio ao longo do período disponível na base.
 
-Os resultados mostram crescimento do volume de pedidos e do valor movimentado, enquanto o ticket médio permaneceu relativamente estável nos períodos de maior movimentação.
+No período analisado, foram identificados:
+
+- **2016:** 329 pedidos e aproximadamente R$ 49,8 mil em valor de produtos;
+- **2017:** 45.101 pedidos e aproximadamente R$ 6,16 milhões em valor de produtos;
+- **2018:** 54.011 pedidos e aproximadamente R$ 7,39 milhões em valor de produtos.
+
+O ticket médio foi de **R$ 151,32 em 2016**, **R$ 136,49 em 2017** e **R$ 136,75 em 2018**.
+
+Entre os meses com maior volume de pedidos, novembro de 2017 apresentou **7.544 pedidos**, com aproximadamente **R$ 1,01 milhão** em valor de produtos. Em 2018, janeiro, março, abril e maio também apresentaram volumes superiores a 6,8 mil pedidos.
+
+Os resultados indicam crescimento significativo do volume de pedidos e do valor movimentado ao longo do período disponível, enquanto o ticket médio permaneceu relativamente estável nos períodos de maior movimentação.
+
+A comparação anual deve considerar que 2016 e 2018 não representam necessariamente anos completos na base.
 
 ### 7.2 Categorias de produtos
 
-Foram comparadas as categorias considerando quantidade de itens vendidos, valor total das vendas e valor médio por item.
+Foram comparadas as categorias considerando quantidade de itens vendidos, valor total dos produtos vendidos e valor médio por item.
 
-Os resultados mostram que maior volume de itens não significa necessariamente maior valor financeiro, devido às diferenças de valor médio entre as categorias.
+Em quantidade de itens, `cama_mesa_banho` apresentou o maior volume, com **11.115 itens vendidos**, seguida por `beleza_saude`, com **9.670 itens**, e `esporte_lazer`, com **8.641 itens**.
 
-### 7.3 Clientes
+Em valor total de vendas, `beleza_saude` apresentou o maior resultado, com aproximadamente **R$ 1,41 milhão**, seguida por `relogios_presentes`, com **R$ 1,31 milhão**, e `cama_mesa_banho`, com **R$ 1,24 milhão**.
 
-Foram analisados os clientes a partir do `customer_unique_id`, permitindo identificar compras recorrentes.
+A análise do valor médio por item também apresentou diferenças relevantes entre as categorias. Entre as categorias com pelo menos 1.000 itens vendidos, `relogios_presentes` apresentou o maior valor médio, de aproximadamente **R$ 217,92 por item**, enquanto `beleza_saude`, apesar de apresentar o maior valor total de vendas, apresentou valor médio de **R$ 149,04 por item**.
 
-A base possui 96.096 clientes únicos, dos quais 2.997 realizaram mais de uma compra.
+Os resultados mostram que volume de itens e valor financeiro são dimensões diferentes da análise. O valor total movimentado por uma categoria resulta da combinação entre quantidade vendida e valor médio dos produtos.
 
-Os clientes recorrentes representam uma parcela reduzida da base, mas apresentam valor médio de compras superior ao grupo de clientes que realizou apenas uma compra.
+### 7.3 Clientes e recorrência de compras
 
-### 7.4 Avaliações
+A análise dos clientes utilizou o `customer_unique_id`, permitindo diferenciar clientes recorrentes de diferentes registros de pedidos associados ao mesmo consumidor.
 
-Foi analisada a distribuição das notas atribuídas pelos clientes.
+Foram identificados **96.096 clientes únicos**. Desse total, **93.099 clientes realizaram apenas uma compra**, enquanto **2.997 clientes realizaram duas ou mais compras**, representando aproximadamente **3,12% da base de clientes**.
 
-As avaliações apresentam concentração nas notas mais altas, com 77,07% das avaliações com nota disponível apresentando pontuação 4 ou 5.
+Apesar de representarem uma parcela reduzida da quantidade de clientes, os clientes recorrentes movimentaram aproximadamente **R$ 922 mil**, contra **R$ 1,49 milhão** movimentados pelos clientes que realizaram apenas uma compra.
 
+O valor médio de compras foi de aproximadamente **R$ 307,66 por cliente recorrente**, enquanto clientes de compra única apresentaram média de **R$ 160,28**.
+
+Assim, os clientes recorrentes representam uma parcela pequena da base em quantidade, mas apresentam maior valor médio de compras e representam aproximadamente **38,2% do valor total de compras analisado**.
+
+Essa análise é descritiva e não permite, isoladamente, estabelecer uma relação causal entre recorrência e maior valor de compras.
+
+### 7.4 Avaliações dos clientes
+
+Foi analisada a distribuição das avaliações atribuídas aos pedidos.
+
+A base apresentou **99.249 registros de avaliações**, sendo **99.223 avaliações com nota disponível**.
+
+A distribuição apresentou forte concentração nas notas mais altas:
+
+- **Nota 5:** 57,78%;
+- **Nota 4:** 19,29%;
+- **Nota 3:** 8,24%;
+- **Nota 2:** 3,18%;
+- **Nota 1:** 11,51%.
+
+Somadas, as notas **4 e 5 representam 77,07% das avaliações com nota disponível**.
+
+A análise permite observar a distribuição geral da satisfação registrada na base, sem buscar estabelecer relações causais entre as avaliações e outras características dos pedidos ou clientes.
 
 ## 8. Autoavaliação
 
